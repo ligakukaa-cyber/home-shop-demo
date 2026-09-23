@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ОХРА &mdash; посуда, текстиль и свет для дома</title>
+<meta name="description" content="Интернет-магазин товаров для дома: посуда, текстиль, свет и декор. Доставка по России, оплата картой и по СБП, возврат в течение 14 дней.">
+<meta name="theme-color" content="#FAF7F2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="demo-bar">Демонстрационный магазин. Товары и компания вымышлены, оплата не производится.</div>
+
+<header class="nav" id="nav">
+  <a class="logo" href="#top">ОХРА<span>для дома</span></a>
+  <nav class="menu">
+    <a href="#catalog">Каталог</a>
+    <a href="#pay">Оплата и доставка</a>
+    <a href="#about">О магазине</a>
+  </nav>
+  <div class="nav-act">
+    <button class="icon-btn" id="searchBtn" aria-label="Поиск по каталогу">Поиск</button>
+    <button class="cart-btn" id="cartBtn" aria-label="Открыть корзину">
+      Корзина <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<!-- ПЕРВЫЙ ЭКРАН -->
+<section class="hero" id="top">
+  <div class="hero-in">
+    <span class="tag">Новая коллекция «Тёплый минимализм»</span>
+    <h1>Вещи, которые<br>делают дом<br><em>домом</em></h1>
+    <p>Керамика, лён и мягкий свет. Отбираем у небольших мастерских
+      и привозим по всей России.</p>
+    <div class="hero-act">
+      <a class="btn btn-dark" href="#catalog">Перейти в каталог</a>
+      <a class="btn btn-ghost" href="#pay">Как получить заказ</a>
+    </div>
+  </div>
+  <div class="hero-img"><img src="assets/hero.jpg" alt="Полка с керамикой, текстилем и лампой" fetchpriority="high"></div>
+</section>
+
+<!-- ПРЕИМУЩЕСТВА -->
+<section class="usp">
+  <div class="wrap usp-row">
+    <div><b>Доставка 1–4 дня</b><span>по России, от 5 000 ₽ бесплатно</span></div>
+    <div><b>Оплата онлайн</b><span>картой, СБП или при получении</span></div>
+    <div><b>Возврат 14 дней</b><span>без объяснения причины</span></div>
+    <div><b>Обмен без споров</b><span>если что-то приехало битым</span></div>
+  </div>
+</section>
+
+<!-- КАТАЛОГ -->
+<section class="section" id="catalog">
+  <div class="wrap">
+    <div class="head">
+      <h2>Каталог</h2>
+      <p>48 позиций в четырёх разделах. Каталог собирается из файла — добавить товар
+        можно без вёрстки.</p>
+    </div>
+
+    <div class="search-row" id="searchRow">
+      <input type="search" id="q" placeholder="Найти товар: лампа, плед, ваза…" aria-label="Поиск по названию">
+      <button class="icon-btn" id="filtersBtn" aria-expanded="false">Фильтры</button>
+    </div>
+
+    <div class="catalog-grid">
+      <aside class="filters" id="filters">
+        <div class="f-block">
+          <h3>Раздел</h3>
+          <div class="chips" id="cats"></div>
+        </div>
+        <div class="f-block">
+          <h3>Цена, ₽</h3>
+          <div class="range">
+            <label>от <input type="number" id="pmin" min="0" step="100" placeholder="0"></label>
+            <label>до <input type="number" id="pmax" min="0" step="100" placeholder="12 000"></label>
+          </div>
+        </div>
+        <div class="f-block">
+          <h3>Ещё</h3>
+          <label class="check"><input type="checkbox" id="onlyStock"><i>Только в наличии</i></label>
+          <label class="check"><input type="checkbox" id="onlySale"><i>Только со скидкой</i></label>
+        </div>
+        <button class="link-btn" id="resetBtn">Сбросить фильтры</button>
+      </aside>
+
+      <div class="catalog-main">
+        <div class="sort-row">
+          <span class="found" id="found">—</span>
+          <label class="sort">Сортировка
+            <select id="sort">
+              <option value="pop">по популярности</option>
+              <option value="cheap">сначала дешевле</option>
+              <option value="rich">сначала дороже</option>
+              <option value="name">по названию</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="grid" id="grid"></div>
+        <p class="empty" id="empty" hidden>Ничего не нашлось. Попробуйте изменить фильтры.</p>
+        <button class="btn btn-ghost btn-wide" id="moreBtn" hidden>Показать ещё</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ОПЛАТА И ДОСТАВКА -->
+<section class="section pay-sec" id="pay">
+  <div class="wrap pay-grid">
+    <div>
+      <h2>Оплата и доставка</h2>
+      <p class="lead">Оплата проходит на защищённой странице платёжного сервиса — деньги
+        списываются там, а не на сайте магазина.</p>
+      <ul class="pay-list">
+        <li><b>Банковской картой</b><span>Visa, Mastercard, МИР</span></li>
+        <li><b>СБП</b><span>по QR-коду из приложения банка</span></li>
+        <li><b>При получении</b><span>в пункте выдачи или курьеру</span></li>
+      </ul>
+    </div>
+    <div class="pay-card">
+      <h3>Как приедет заказ</h3>
+      <ol class="pay-steps">
+        <li><b>Сегодня</b> собираем и упаковываем</li>
+        <li><b>1–4 дня</b> доставка по России</li>
+        <li><b>Бесплатно</b> при заказе от 5 000 ₽</li>
+      </ol>
+      <p class="pay-note">Хрупкое пакуем в два слоя и страхуем. Если приедет битым —
+        меняем за свой счёт.</p>
+    </div>
+  </div>
+</section>
+
+<!-- О МАГАЗИНЕ -->
+<section class="section about-sec" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <h2>О магазине</h2>
+      <p>ОХРА — небольшой магазин вещей для дома. Мы не держим склад на тысячи
+        артикулов: берём то, что сами хотели бы поставить на свою полку.</p>
+      <p>Почти всё делают мастерские в России — керамика из Подмосковья, лён из
+        Иванова, свет собирают в Петербурге.</p>
+    </div>
+    <div class="about-facts">
+      <div><b>6 лет</b><span>магазину</span></div>
+      <div><b>48</b><span>позиций в каталоге</span></div>
+      <div><b>4,9</b><span>средняя оценка</span></div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot-row">
+    <span>ОХРА — посуда, текстиль и свет</span>
+    <span class="demo">Демонстрационный сайт. Магазин вымышлен, фотографии сгенерированы, оплата не производится.</span>
+    <a href="https://t.me/VladisavSSS" target="_blank" rel="noopener">Сделал сайт: @VladisavSSS</a>
+  </div>
+</footer>
+
+<!-- КОРЗИНА -->
+<div class="overlay" id="overlay" hidden></div>
+
+<aside class="drawer" id="cart" aria-label="Корзина" hidden>
+  <div class="drawer-head">
+    <h2>Корзина</h2>
+    <button class="close" id="cartClose" aria-label="Закрыть корзину">×</button>
+  </div>
+  <div class="drawer-body" id="cartBody"></div>
+  <div class="drawer-foot" id="cartFoot" hidden>
+    <div class="promo-row">
+      <input type="text" id="promo" placeholder="Промокод" aria-label="Промокод">
+      <button class="btn btn-ghost" id="promoBtn">Применить</button>
+    </div>
+    <p class="promo-msg" id="promoMsg" hidden></p>
+    <div class="sum-row"><span>Товары</span><b id="sumGoods">—</b></div>
+    <div class="sum-row" id="sumDiscRow" hidden><span>Скидка по промокоду</span><b id="sumDisc">—</b></div>
+    <div class="sum-row"><span>Доставка</span><b id="sumDelivery">—</b></div>
+    <div class="sum-row total"><span>Итого</span><b id="sumTotal">—</b></div>
+    <button class="btn btn-dark btn-wide" id="checkoutBtn">Оформить заказ</button>
+  </div>
+</aside>
+
+<!-- БЫСТРЫЙ ПРОСМОТР ТОВАРА -->
+<div class="modal" id="quick" hidden>
+  <div class="modal-in quick-in">
+    <button class="close" id="quickClose" aria-label="Закрыть">×</button>
+    <div class="quick-img"><img id="qImg" alt=""></div>
+    <div class="quick-txt">
+      <span class="q-cat" id="qCat"></span>
+      <h3 id="qName"></h3>
+      <div class="q-price"><b id="qPrice"></b><s id="qOld" hidden></s></div>
+      <p class="q-stock" id="qStock"></p>
+      <p class="q-desc">Ручная работа, небольшие отличия от фото — часть характера вещи.
+        Подходит для посудомоечной машины, кроме изделий с латунью.</p>
+      <button class="btn btn-dark btn-wide" id="qAdd">В корзину</button>
+    </div>
+  </div>
+</div>
+
+<!-- ОФОРМЛЕНИЕ -->
+<div class="modal" id="checkout" hidden>
+  <div class="modal-in">
+    <button class="close" id="coClose" aria-label="Закрыть">×</button>
+    <div class="steps-bar"><span class="on">Данные</span><span id="stepPay">Оплата</span><span id="stepDone">Готово</span></div>
+
+    <form class="co-form" id="coForm" novalidate>
+      <h3>Куда доставить</h3>
+      <label class="field"><span>Имя и фамилия</span>
+        <input type="text" id="coName" autocomplete="name" placeholder="Анна Иванова"></label>
+      <label class="field"><span>Телефон</span>
+        <input type="tel" id="coPhone" autocomplete="tel" placeholder="+7 900 000-00-00"></label>
+      <label class="field"><span>E-mail для чека</span>
+        <input type="email" id="coMail" autocomplete="email" placeholder="anna@mail.ru"></label>
+
+      <fieldset class="field">
+        <span>Способ получения</span>
+        <div class="opts" id="coWay">
+          <label><input type="radio" name="way" value="courier" checked><i>Курьер</i></label>
+          <label><input type="radio" name="way" value="pickup"><i>Пункт выдачи</i></label>
+          <label><input type="radio" name="way" value="self"><i>Самовывоз</i></label>
+        </div>
+      </fieldset>
+
+      <label class="field" id="addrField"><span>Адрес</span>
+        <input type="text" id="coAddr" autocomplete="street-address" placeholder="Москва, ул. Мира, 12, кв. 4"></label>
+
+      <div class="co-total"><span>К оплате</span><b id="coTotal">—</b></div>
+      <button class="btn btn-dark btn-wide" type="submit">Перейти к оплате</button>
+      <p class="policy">Нажимая кнопку, вы соглашаетесь с условиями продажи и обработкой данных.</p>
+    </form>
+
+    <!-- ЭКРАН ОПЛАТЫ -->
+    <div class="pay-screen" id="payScreen" hidden>
+      <div class="pay-demo">Демонстрация. Деньги не списываются, данные карты нигде не запрашиваются.</div>
+      <h3>Оплата заказа</h3>
+      <div class="pay-amount"><span>Сумма</span><b id="payAmount">—</b></div>
+      <div class="pay-ways" id="payWays">
+        <label><input type="radio" name="pm" value="card" checked><i><b>Банковская карта</b><span>Visa, Mastercard, МИР</span></i></label>
+        <label><input type="radio" name="pm" value="sbp"><i><b>СБП</b><span>QR-код в приложении банка</span></i></label>
+        <label><input type="radio" name="pm" value="later"><i><b>При получении</b><span>наличными или картой курьеру</span></i></label>
+      </div>
+      <p class="pay-real">На рабочем сайте на этом шаге открывается защищённая страница
+        платёжного сервиса. Здесь она заменена заглушкой — копировать чужую страницу
+        оплаты нельзя.</p>
+      <button class="btn btn-dark btn-wide" id="payBtn">Оплатить</button>
+      <button class="link-btn" id="payBack">Вернуться к данным</button>
+    </div>
+
+    <!-- ГОТОВО -->
+    <div class="done-screen" id="doneScreen" hidden>
+      <div class="done-mark">✓</div>
+      <h3>Заказ принят</h3>
+      <p class="done-num">Номер заказа <b id="orderNo">—</b></p>
+      <p>Отправили подтверждение на <b id="doneMail">—</b>. Курьер позвонит
+        по номеру <b id="donePhone">—</b> за час до доставки.</p>
+      <button class="btn btn-ghost btn-wide" id="doneClose">Вернуться в каталог</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/catalog.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
